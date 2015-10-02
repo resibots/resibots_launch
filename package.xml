@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<package>
+	<name>resibots_launch</name>
+	<version>0.0.1</version>
+	<description>Resibots project launch files</description>
+
+	<maintainer email="costashatz@gmail.com">Konstantinos Chatzilygeroudis</maintainer>
+
+
+	<license>BSD</license>
+
+	<url type="repository">https://github.com/costashatz/to_do</url>
+	<url type="bugtracker">https://github.com/costashatz/to_do/issues</url>
+
+	<author email="costashatz@gmail.com">Konstantinos Chatzilygeroudis</author>
+
+
+	<buildtool_depend>catkin</buildtool_depend>
+
+	<run_depend>rospy</run_depend>
+	<run_depend>hexa_control</run_depend>
+	<run_depend>openni2_launch</run_depend>
+	<run_depend>rtabmap_ros</run_depend>
+	<run_depend>tf</run_depend>
+
+
+	<export>
+	</export>
+</package>
