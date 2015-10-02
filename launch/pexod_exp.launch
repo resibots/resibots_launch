@@ -7,7 +7,7 @@ This software is governed by the CeCILL license under French law and abiding by 
 	<include file="$(find resibots_launch)/launch/visual_odometry.launch"/>
 
 	<!-- Start hexapod_server node -->
-	<node pkg="hexa_control" type="hexapod_server" name="hexapod_server">
+	<node pkg="hexa_control" type="hexapod_server" name="hexapod_server" output="screen">
 		<remap from="vo" to="/odom"/>
 	</node>
 
