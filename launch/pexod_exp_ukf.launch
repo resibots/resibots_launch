@@ -3,24 +3,18 @@
 
 This software is governed by the CeCILL license under French law and abiding by the rules of distribution of free software. You can use, modify and/ or redistribute the software under the terms of the CeCILL license as circulated by CEA, CNRS and INRIA at the following URL "http://www.cecill.info". As a counterpart to the access to the source code and rights to copy, modify and redistribute granted by the license, users are provided only with a limited warranty and the software's author, the holder of the economic rights, and the successive licensors have only limited liability. In this respect, the user's attention is drawn to the risks associated with loading, using, modifying and/or developing or reproducing the software by the user in light of its specific status of free software, that may mean that it is complicated to manipulate, and that also therefore means that it is reserved for developers and experienced professionals having in-depth computer knowledge. Users are therefore encouraged to load and test the software's suitability as regards their requirements in conditions enabling the security of their systems and/or data to be ensured and, more generally, to use and operate it in the same conditions as regards security. The fact that you are presently reading this means that you have had knowledge of the CeCILL license and that you accept its terms. -->
 <launch>
-	<!-- Call openni2_launch file to start camera -->
-	<include file="$(find openni2_launch)/launch/openni2.launch">
-		<!-- <arg name="rgb_frame_id"   default="/whatever_frame_you_wish" />
-		<arg name="depth_frame_id" default="/whatever_frame_you_wish" />
-		<arg name="publish_tf" value="false" /> -->
-		<arg name="depth_registration" value="true" />
-	</include>
+	<!-- Call visual_odometry file to start visual odometry -->
+	<include file="$(find resibots_launch)/launch/visual_odometry.launch"/>
 
-	<!-- TF Static Transforms -->
-	<node pkg="tf" type="static_transform_publisher" name="base_to_camera" args="0.1 0 0 0 0 0 base_link camera_link 100" />
+	<!-- Call imu file to start IMU -->
+	<include file="$(find resibots_launch)/launch/imu.launch"/>
 
-	<!-- RTABMap Odometry -->
-	<node pkg="rtabmap_ros" type="rgbd_odometry" name="rtabmap_odom" output="screen">
-		<param name="Odom/ResetCountdown" value="50"/>
-		<param name="publish_tf" value="false"/>
-		<remap from="rgb/image" to="/camera/rgb/image_raw"/>
-		<remap from="rgb/camera_info" to="/camera/rgb/camera_info"/>
-		<remap from="depth/image" to="/camera/depth_registered/image_raw"/>
+	<!-- Call ukf_filter file to start position state estimation using UKF -->
+	<include file="$(find resibots_launch)/launch/ukf_filter.launch"/>
+
+	<!-- Start hexapod_server node -->
+	<node pkg="hexa_control" type="hexapod_server" name="hexapod_server" output="screen">
+		<remap from="vo" to="/odometry/filtered"/> <!-- point to filtered odometry -->
 	</node>
 
 </launch>
