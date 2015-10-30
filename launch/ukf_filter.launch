@@ -152,7 +152,7 @@
 
       <!-- By default, the subscription queue size for each message type is 1. If you wish to increase that so as not
            miss any messages (even if your frequency is set to a relatively small value), increase these. -->
-      <param name="odom0_queue_size" value="2"/>
+      <param name="odom0_queue_size" value="10"/>
       <!-- <param name="odom1_queue_size" value="1"/> -->
       <!-- <param name="pose0_queue_size" value="10"/> -->
       <!-- <param name="twist0_queue_size" value="3"/> -->
