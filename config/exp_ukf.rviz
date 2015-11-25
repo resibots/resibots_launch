@@ -48,6 +48,16 @@ Visualization Manager:
       Plane Cell Count: 10
       Reference Frame: <Fixed Frame>
       Value: true
+    - Angle Tolerance: 0.1
+      Class: rviz/Odometry
+      Color: 255; 25; 0
+      Enabled: true
+      Keep: 1
+      Length: 1
+      Name: Odometry
+      Position Tolerance: 0.1
+      Topic: /odometry/filtered
+      Value: true
     - Alpha: 0.3
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
