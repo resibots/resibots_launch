@@ -8,4 +8,5 @@ This software is governed by the CeCILL license under French law and abiding by 
 		<!-- Load configurations from YAML file to parameter server -->
 		<rosparam file="$(find hexa_control)/config/hexa_control_ukf.yaml" command="load"/>
 	</node>
+
 </launch>
