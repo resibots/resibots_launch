@@ -16,6 +16,6 @@ This software is governed by the CeCILL license under French law and abiding by 
 	<include file="$(find resibots_launch)/launch/ukf_filter.launch"/>
 
 	<!-- Start RViz to visualize -->
-	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find resibots_launch)/config/exp.rviz" />
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find resibots_launch)/config/exp_ukf.rviz" />
 
 </launch>
