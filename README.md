@@ -12,8 +12,8 @@ resibots_launch is basically calling other ResiBots related packages in order to
 * [RTABMap] - **rtabmap_ros**
 * [hexa_control] - **hexa_control**
 * [tf] - **tf**
-* [ethzasl_xsens_driver] - **Xsens IMU driver**
-* [robot_localization] - **State estimation with fusion of sensors**
+* [ethzasl_xsens_driver] \(optional\) - **Xsens IMU driver**
+* [robot_localization] \(optional\) - **State estimation with fusion of sensors**
 
 
 ## LICENSE
