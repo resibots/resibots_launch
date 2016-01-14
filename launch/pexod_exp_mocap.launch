@@ -9,4 +9,8 @@ This software is governed by the CeCILL license under French law and abiding by 
 		<rosparam file="$(find hexa_control)/config/hexa_control_mocap.yaml" command="load"/>
 	</node>
 
+	<!-- Start mocap nodes -->
+	<node pkg="mocap_optitrack" type="mocap_node" name="mocap_node" output="screen"/>
+	<node pkg="resibots_launch" type="odom_transform.py" name="odom_mocap_transform" output="screen"/>
+
 </launch>
