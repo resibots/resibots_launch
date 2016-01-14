@@ -10,7 +10,10 @@ This software is governed by the CeCILL license under French law and abiding by 
 	</node>
 
 	<!-- Start mocap nodes -->
-	<node pkg="mocap_optitrack" type="mocap_node" name="mocap_node" output="screen"/>
+	<node pkg="mocap_optitrack" type="mocap_node" name="mocap_node" output="screen">
+		<!-- Load configurations from YAML file to parameter server -->
+		<rosparam file="$(find resibots_launch)/config/mocap.yaml" command="load"/>
+	</node>
 	<node pkg="resibots_launch" type="odom_transform.py" name="odom_mocap_transform" output="screen"/>
 
 </launch>
