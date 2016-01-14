@@ -14,6 +14,8 @@ resibots_launch is basically calling other ResiBots related packages in order to
 * [tf] - **tf**
 * [ethzasl_xsens_driver] \(optional\) - **Xsens IMU driver**
 * [robot_localization] \(optional\) - **State estimation with fusion of sensors**
+* [mocap_optitrack] \(optional\) - **Optitrack ROS nodes**
+    * Checkout to the **Motive17** branch
 
 
 ## LICENSE
@@ -28,3 +30,4 @@ resibots_launch is basically calling other ResiBots related packages in order to
 [CeCILL]: http://www.cecill.info/index.en.html
 [ethzasl_xsens_driver]: http://wiki.ros.org/ethzasl_xsens_driver
 [robot_localization]: http://wiki.ros.org/robot_localization
+[mocap_optitrack]: https://github.com/ros-drivers/mocap_optitrack
