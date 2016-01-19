@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+
+<!--
+
+This launch file starts the ROS wrapper for the KUKA youBot API.
+
+
+If you receive an error message that contains "Excecute as root"
+then go to the bin folder and execute: sudo setcap cap_net_raw+ep
+or enable the USE_SETCAP flag in the cmake file and recompile again.
+-->
+
+<launch>
+
+	<!-- Set relevant parameters. -->
+	<param name="youBotHasBase" type="bool" value="true"/>
+	<param name="youBotHasArms" type="bool" value="false"/> 
+	<param name="youBotDriverCycleFrequencyInHz" type="double" value="50.0"/>
+	<param name="youBotConfigurationFilePath" type="string" value="$(find youbot_driver)/config"/>
+
+	<param name="trajectoryActionServerEnable" type="bool" value="true"/>
+	<param name="trajectoryPositionGain" type="double" value="5.0"/>
+	<param name="trajectoryVelocityGain" type="double" value="0.0"/>
+
+	<!-- 
+	  Initialize youBot arms by name. Each named arm must have a matching config
+	  file. For example, the entry:	 
+		  <param name="youBotArmName1" type="str" value="MyArm"/>
+	  will attempt to initialize an arm using the config file "MyArm.cfg" in your
+	  default configuration path.
+
+	  To initialize multiple arms, simply define parameters naming each of them,
+	  beginning with the parameter "youBotArmName1", then "youBotArmName2", etc.
+	-->
+	
+	<!-- Default name values --> 
+	<param name="youBotBaseName" type="str" value="youbot-base"/>
+	<param name="youBotArmName1" type="str" value="youbot-manipulator"/>
+	
+
+	<!-- Start the driver. NOTE: Every joint topic is mapped to armName/joint_states -->
+	<node name="youbot_driver" pkg="youbot_driver_ros_interface" type="youbot_driver_ros_interface" output="screen">
+		<remap from="base/joint_states" to="/joint_states"/> 
+		<remap from="arm_1/joint_states" to="/joint_states"/> 
+	</node>
+
+	<!-- upoad URDF model to the parameter server -->  
+	<param name="robot_description" command="$(find xacro)/xacro.py '$(find youbot_description)/robots/youbot_base_only.urdf.xacro'"/>
+
+	<!-- start robot_state_publisher -->
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" output="screen"/>  
+
+	<arg name="joy_config" default="logitech-holonomic" />
+	<arg name="joy_dev" default="/dev/input/js0" />
+  
+	<node pkg="joy" type="joy_node" name="joy_node">
+		<param name="dev" value="$(arg joy_dev)" />
+		<param name="deadzone" value="0.3" />
+		<param name="autorepeat_rate" value="20" />
+	</node>
+	
+	<node pkg="teleop_twist_joy" name="teleop_twist_joy" type="teleop_node">
+		<rosparam command="load" file="$(find teleop_youbot)/config/$(arg joy_config).config.yaml" />
+	</node>
+
+
+	<!-- <node pkg="mocap_optitrack" type="mocap_node" name="mocap_node" respawn="false" launch-prefix="" required="true">
+    		<rosparam file="$(find mocap_optitrack)/config/mocap.yaml" command="load" />
+	</node>
+
+	<node pkg="resibots_launch" type="odom_transform.py" name="odom_transform" output="screen" /> -->
+</launch>
+
