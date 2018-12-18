@@ -25,8 +25,8 @@
   <!-- This launches the odom_transform.py node in order to be able to publish odom, the robot starting position   -->
 
   <!-- assimilate pexod published by optitrack with the urdf base_link  -->
-  <node pkg="tf" type="static_transform_publisher" name="pexod_base_link" args="0 0 0 0 0 0 /pexod /base_link 100"/>
   <arg name="robot_name" default="pexod"/>
+  <node pkg="tf" type="static_transform_publisher" name="$(arg robot_name)_base_link" args="0 0 0 0 0 0 /$(arg robot_name) /base_link 100"/>
   <param name="/odom_vrpn_transform/base_link_frame" type="str" value="$(arg robot_name)" />
   <node pkg="resibots_launch" type="odom_transform.py" name="odom_vrpn_transform" output="screen"/>
 
