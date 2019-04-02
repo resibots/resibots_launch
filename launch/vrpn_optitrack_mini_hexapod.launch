@@ -1,7 +1,7 @@
 <launch>
 
   <!-- This launches the vrpn client to recover data from optitrack  -->
-  <arg name="server" default="optitrack.loria.fr"/>
+  <arg name="server" default="152.81.10.239"/>
   <node pkg="vrpn_client_ros" type="vrpn_client_node" name="vrpn_client_node" output="screen">
    <rosparam subst_value="true">
       server: $(arg server)
