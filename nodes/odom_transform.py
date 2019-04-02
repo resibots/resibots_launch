@@ -16,10 +16,11 @@ class OdomTransform:
     def loop(self):
         # Get params with defaults
         rate = rospy.get_param('~rate', 100.0) # 100Hz
+
         world_frame = rospy.get_param('~world_frame', '/world')
         odom_frame = rospy.get_param('~odom_frame', '/odom')
         base_link_frame = rospy.get_param('~base_link_frame', '/Robot_1/base_link')
-
+        print('test')
         # Publish service
         rospy.Service('odom_transform_restart', Empty, self.handle_beginning)
 
