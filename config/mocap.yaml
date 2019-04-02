@@ -6,10 +6,9 @@ rigid_bodies:
     '1':
         pose: pexod/pose
         pose2d: pexod/ground_pose
-        child_frame_id: base_link
-        parent_frame_id: odom
-    '2':
-        pose: Robot_2/pose
-        pose2d: Robot_2/ground_pose
-        child_frame_id: Robot_2/base_link
+        child_frame_id: pexod/base_link
         parent_frame_id: world
+
+
+optitrack_config:
+        multicast_address: 239.255.42.99
